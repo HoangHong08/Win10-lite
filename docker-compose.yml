@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  win10-lite:
+    image: dockurr/windows
+    container_name: wwise-win10
+    environment:
+      VERSION: "10"
+      USERNAME: "HoangHong08"
+      PASSWORD: "0range_Cat"
+      RAM_SIZE: "4G"
+      CPU_CORES: "4"
+      DISK_SIZE: "64G"
+    ports:
+      - "8006:8006"
+      - "3389:3389"
+    volumes:
+      - ./optimize.ps1:/startup/optimize.ps1
+    devices:
+      - "/dev/kvm"
+      - "/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    stop_grace_period: 1m30s
